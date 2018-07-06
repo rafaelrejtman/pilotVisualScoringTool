@@ -2,7 +2,7 @@
 % Look for all Instructions on Audio File
 % Script for Batch Searching all Instructions on a CAE Audio Recording
 
-function tableT = findAllInstructions(fullRecAudioFile)
+function tableT = findAllInstructions %(fullRecAudioFile) ISSUE(add in the future)
 
 %% Reading Recording Audio
 
