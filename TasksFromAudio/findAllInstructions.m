@@ -6,7 +6,7 @@ function tableT = findAllInstructions(fullRecAudioFile)
 
 %% Reading Recording Audio
 
-fullRecAudioFile = '/Users/RFRejtman/Documents/Education/KU LEUVEN Internship/Development/CAE Reference Data/CAE Audio Recordings/test4.mp3';
+fullRecAudioFile = '/Users/RFRejtman/Documents/Education/KU LEUVEN Internship/Development/Data/CAE Audio Recordings/test4.mp3';
 
 [fullRecAudioSignal, fullRecAudioFreq] = audioread(fullRecAudioFile);
 
@@ -18,7 +18,7 @@ end
 
 %% Reading Reference Audio
 
-FileListing = dir('/Users/RFRejtman/Documents/Education/KU LEUVEN Internship/Development/CAE Reference Data/CAE Instruction Recordings/*.wav');
+FileListing = dir('/Users/RFRejtman/Documents/Education/KU LEUVEN Internship/Development/Data/CAE Instruction Recordings/*.wav');
 
 n = size(FileListing,1); % number of instructions in folder
 
@@ -28,7 +28,7 @@ for k = 1:n % Look for each instruction
         
         instrName = FileListing(k).name;
         
-        instrAudioFile = strcat('/Users/RFRejtman/Documents/Education/KU LEUVEN Internship/Development/CAE Reference Data/CAE Instruction Recordings/',instrName);
+        instrAudioFile = strcat('/Users/RFRejtman/Documents/Education/KU LEUVEN Internship/Development/Data/CAE Instruction Recordings/',instrName);
 
         [tempSig,instrSignals{k,2}]= audioread(instrAudioFile);
         
