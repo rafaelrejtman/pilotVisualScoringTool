@@ -8,14 +8,12 @@ function [ocMGT,deltaOffset] = autoOffset(heatPoint,thisMGT)
 % The ADI CP is determined here in terms of true pixels in X and Y
 % (based on Photoshop data)
 
-CPupperTip = [658 (926-334)];
-CPlowerTip = [658 (926-348)];
-CPmiddle = (CPupperTip + CPlowerTip)/2;
+[refPointx,refPointy] = defineRefPoint;
 
 %% Determining Distance to heatPoint
 
-deltaX = CPmiddle(1) - heatPoint(1);
-deltaY = CPmiddle(2) - heatPoint(2);
+deltaX = refPointx - heatPoint(1);
+deltaY = refPointy - heatPoint(2);
 
 deltaOffset = [deltaX deltaY];
 
