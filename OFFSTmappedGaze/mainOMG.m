@@ -1,10 +1,14 @@
 
 %This is a MODULE Main
-function offsetMappedGazeTable = mainOMG(thisMGT,rec_name)
+function offsetMappedGazeTable = mainOMG(thisMGT,recName,printGraphsBOL)
 
-[heatPoint] = getHeatP(thisMGT,rec_name,printGraphs);
+[heatPoint] = getHeatP(thisMGT,recName,printGraphsBOL);
 
 [offsetMappedGazeTable,deltaOffset] = autoOffset(heatPoint,thisMGT);
+
+if printGraphsBOL
+    testOffset(thisMGT, offsetMappedGazeTable, heatPoint, deltaOffset);
+end
 
 end
 
