@@ -8,7 +8,13 @@ function [ocMGT,deltaOffset] = autoOffset(heatPoint,thisMGT)
 % The ADI CP is determined here in terms of true pixels in X and Y
 % (based on Photoshop data)
 
-[refPointx,refPointy] = defineRefPoint;
+% ISSUE: Include in later release!
+% [refPointx,refPointy] = defineRefPoint;
+
+% Calculated using defineRefPoint function:
+
+refPointx = 614;
+refPointy = 306;
 
 %% Determining Distance to heatPoint
 
