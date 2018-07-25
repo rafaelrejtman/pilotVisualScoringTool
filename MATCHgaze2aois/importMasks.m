@@ -1,4 +1,8 @@
 
+% This function imports Masks as alpha channels. The images have been
+% created in Photoshop, by utiling vector shapes to define ROIs on top of
+% the G1000 panel and according to advices given by Ken at CAE
+
 function AOImasks = importMasks
 
 %% Importing Images

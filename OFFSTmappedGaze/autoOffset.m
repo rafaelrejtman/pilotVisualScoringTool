@@ -4,6 +4,12 @@
 
 function [ocMGT,deltaOffset] = autoOffset(heatPoint,thisMGT)
 
+%% Importing Reference Image
+
+instrumentPanel = importdata('G1000-Ken.png');
+imageRows = size(instrumentPanel,1);
+imageColumns = size(instrumentPanel,2);
+
 %% Determining the Reference Point Position - ADI CP
 % The ADI CP is determined here in terms of true pixels in X and Y
 % (based on Photoshop data)
@@ -47,6 +53,17 @@ newB = B + deltaOffset(2);
 
 ocMGT.AutoMapX = newA;
 ocMGT.AutoMapY = newB;
+
+
+% Added on 25/07: If numbers get out of bounds, ignore Data Point!
+
+ocMGT(newA > imageColumns | newA < 1 | newB > imageRows | newB < 1,:) = [];
+
+% ocMGT(newA < 0,:) = [];
+% 
+% ocMGT(newB > imageRows,:) = [];
+% 
+% ocMGT(newB < 0,:) = [];
 
 end
 
