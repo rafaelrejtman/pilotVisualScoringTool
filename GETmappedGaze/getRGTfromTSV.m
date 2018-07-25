@@ -5,7 +5,7 @@
 
 function rawGazeTable = getRGTfromTSV %(input_file)
 
-input_file = '/Users/RFRejtman/Documents/Education/KU LEUVEN Internship/Development/Data/Tobii TSV Files/Recording052_Vincent.tsv';
+input_file = '/Users/RFRejtman/Documents/Education/KU LEUVEN Internship/Development/Data/Tobii TSV Files/CAE_Jens_Post.tsv';
 
 %% Detecting File Enconding
 
@@ -49,7 +49,7 @@ end
 
 %% Formatting Data
 
-my_header = {'RecName';'RecDur';'TimeStamp';'EyeMoveType';'AutoMapScore';'AutoMapX';'AutoMapY';'ADI_Hit';'ADIcP_Hit';'ALT_Hit';'BA_Hit';'HDG';'HDGHe_Hit';'PWR_Hit';'Speed_Hit';'V_S_Hit'};
+my_header = {'RecName';'RecDur';'TimeStamp';'EyeMoveType';'AutoMapScore';'AutoMapX';'AutoMapY'};
 
 thisline = bytes2char(thisbuffer);
 fmt = repmat('%s', 1, num_field);
@@ -62,15 +62,15 @@ data_fields(:,3) = num2cell(str2double(data_fields_text(:,3)));
 data_fields(:,5) = num2cell(str2double(data_fields_text(:,5)));
 data_fields(:,6) = num2cell(str2double(data_fields_text(:,6)));
 data_fields(:,7) = num2cell(str2double(data_fields_text(:,7)));
-data_fields(:,8) = num2cell(str2double(data_fields_text(:,8)));
-data_fields(:,9) = num2cell(str2double(data_fields_text(:,9)));
-data_fields(:,10) = num2cell(str2double(data_fields_text(:,10)));
-data_fields(:,11) = num2cell(str2double(data_fields_text(:,11)));
-data_fields(:,12) = num2cell(str2double(data_fields_text(:,12)));
-data_fields(:,13) = num2cell(str2double(data_fields_text(:,13)));
-data_fields(:,14) = num2cell(str2double(data_fields_text(:,14)));
-data_fields(:,15) = num2cell(str2double(data_fields_text(:,15)));
-data_fields(:,16) = num2cell(str2double(data_fields_text(:,16)));
+% data_fields(:,8) = num2cell(str2double(data_fields_text(:,8)));
+% data_fields(:,9) = num2cell(str2double(data_fields_text(:,9)));
+% data_fields(:,10) = num2cell(str2double(data_fields_text(:,10)));
+% data_fields(:,11) = num2cell(str2double(data_fields_text(:,11)));
+% data_fields(:,12) = num2cell(str2double(data_fields_text(:,12)));
+% data_fields(:,13) = num2cell(str2double(data_fields_text(:,13)));
+% data_fields(:,14) = num2cell(str2double(data_fields_text(:,14)));
+% data_fields(:,15) = num2cell(str2double(data_fields_text(:,15)));
+% data_fields(:,16) = num2cell(str2double(data_fields_text(:,16)));
 rawGazeTable = cell2table(data_fields, 'VariableNames', my_header);
 
 end

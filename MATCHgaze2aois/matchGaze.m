@@ -15,7 +15,7 @@ matchedGaze = zeros(size(thisMGT,1),2);
 
 for p=1:size(thisMGT,1)
     
-    %disp(p);
+%     disp(p);
     
     currentGazePointX = thisMGT.AutoMapX(p);
     currentGazePointY = thisMGT.AutoMapY(p);
