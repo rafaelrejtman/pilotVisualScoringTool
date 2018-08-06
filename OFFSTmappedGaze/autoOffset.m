@@ -7,8 +7,8 @@ function [ocMGT,deltaOffset] = autoOffset(heatPoint,thisMGT)
 %% Importing Reference Image
 
 instrumentPanel = importdata('/Users/RFRejtman/Documents/Education/KU LEUVEN Internship/Development/Reference Images/G1000-Ken.png');
-imageRows = size(instrumentPanel,1);
-imageColumns = size(instrumentPanel,2);
+imageRows = size(instrumentPanel.alpha,1);
+imageColumns = size(instrumentPanel.alpha,2);
 
 %% Determining the Reference Point Position - ADI CP
 % The ADI CP is determined here in terms of true pixels in X and Y
@@ -19,8 +19,8 @@ imageColumns = size(instrumentPanel,2);
 
 % Calculated using defineRefPoint function:
 
-refPointx = 614;
-refPointy = 306;
+refPointx = 466;
+refPointy = 303;
 
 %% Determining Distance to heatPoint
 

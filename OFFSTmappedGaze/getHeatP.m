@@ -6,8 +6,8 @@ function [heatPoint] = getHeatP(thisMGT,rec_name,printGraphs)
 
 %% Snapshot Parameters
 % Get this from TOBii!!! ISSUE!
-snapshotHeight = 926; %careful! use to correct y measures
-snapshotWidth = 1418; %use to correct x measures
+snapshotHeight = 764; %careful! use to correct y measures
+snapshotWidth = 1216; %use to correct x measures
 
 %% Gaze Data
 AutoMapX = table2array(thisMGT(:,3));

@@ -7,7 +7,7 @@ global mappedGazeTable offsetMappedGazeTable matchedGazeTable recDur recName;
 
 [mappedGazeTable,recDur,recName] = mainGMG;
 
-offsetMappedGazeTable = mainOMG(mappedGazeTable,recName,0);
+offsetMappedGazeTable = mainOMG(mappedGazeTable,recName,1);
 
 matchedGazeTable = mainMG2A(offsetMappedGazeTable);
 
