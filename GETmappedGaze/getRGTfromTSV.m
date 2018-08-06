@@ -5,7 +5,7 @@
 
 function rawGazeTable = getRGTfromTSV %(input_file)
 
-input_file = '/Users/RFRejtman/Documents/Education/KU LEUVEN Internship/Development/Data/Tobii TSV Files/CAE_Jens_Post.tsv';
+input_file = '/Users/RFRejtman/Documents/Education/KU LEUVEN Internship/Development/Data/Tobii TSV Files/CAE Data Export 31.tsv';
 
 %% Detecting File Enconding
 

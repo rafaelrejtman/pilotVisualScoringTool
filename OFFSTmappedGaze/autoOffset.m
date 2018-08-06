@@ -6,7 +6,7 @@ function [ocMGT,deltaOffset] = autoOffset(heatPoint,thisMGT)
 
 %% Importing Reference Image
 
-instrumentPanel = importdata('G1000-Ken.png');
+instrumentPanel = importdata('/Users/RFRejtman/Documents/Education/KU LEUVEN Internship/Development/Reference Images/G1000-Ken.png');
 imageRows = size(instrumentPanel,1);
 imageColumns = size(instrumentPanel,2);
 

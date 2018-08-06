@@ -25,18 +25,18 @@ MGA(range1,:) = [];
 %% Change Coordinate System (to standard 0-0 Matlab System)
 
 % Get this from tsv!!! ISSUE!
-snapHeight = 926; %careful! use to correct y measures
-snapWidth = 1418; %use to correct x measures
-
-% X coordinate stays the same
-
-% Y coordinate is translated by (1418) and flipped (*-1)
-
-MGAy = MGA(:,4);
-MGAy = MGAy - snapHeight;
-MGAy = (-1)*MGAy;
-
-MGA(:,4) = MGAy;
+% snapHeight = 764; %careful! use to correct y measures
+% snapWidth = 1216; %use to correct x measures
+% 
+% % X coordinate stays the same
+% 
+% % Y coordinate is translated by (1418) and flipped (*-1)
+% 
+% MGAy = MGA(:,4);
+% MGAy = MGAy - snapHeight;
+% MGAy = (-1)*MGAy;
+% 
+% MGA(:,4) = MGAy;
 
 %% Format and Return
 

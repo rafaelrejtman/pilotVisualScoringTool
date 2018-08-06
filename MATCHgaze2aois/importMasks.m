@@ -7,40 +7,42 @@ function AOImasks = importMasks
 
 %% Importing Images
 
+strGeneralPath = '/Users/RFRejtman/Documents/Education/KU LEUVEN Internship/Development/Reference Images/Masks (with AntiAlias)/';
+
 % ADI
-ADI = importdata('ADI_mask.png');
+ADI = importdata(strcat(strGeneralPath,'ADI_mask.png'));
 maskADI = ADI.alpha;
 
 % ADIfocus
-ADIfocus = importdata('ADIfocus_mask.png');
+ADIfocus = importdata(strcat(strGeneralPath,'ADIfocus_mask.png'));
 maskADIfocus = ADIfocus.alpha;
 
 % ALT
-ALT = importdata('ALT_mask.png');
+ALT = importdata(strcat(strGeneralPath,'ALT_mask.png'));
 maskALT = ALT.alpha;
 
 % BA
-BA = importdata('BA_mask.png');
+BA = importdata(strcat(strGeneralPath,'BA_mask.png'));
 maskBA = BA.alpha;
 
 % HDG
-HDG = importdata('HDG_mask.png');
+HDG = importdata(strcat(strGeneralPath,'HDG_mask.png'));
 maskHDG = HDG.alpha;
 
 % HDGfocus
-HDGfocus = importdata('HDGfocus_mask.png');
+HDGfocus = importdata(strcat(strGeneralPath,'HDGfocus_mask.png'));
 maskHDGfocus = HDGfocus.alpha;
 
 % PWR
-PWR = importdata('PWR_mask.png');
+PWR = importdata(strcat(strGeneralPath,'PWR_mask.png'));
 maskPWR = PWR.alpha;
 
 % SPEED
-SPEED = importdata('SPEED_mask.png');
+SPEED = importdata(strcat(strGeneralPath,'SPEED_mask.png'));
 maskSPEED = SPEED.alpha;
 
 % VS
-VS = importdata('VS_mask.png');
+VS = importdata(strcat(strGeneralPath,'VS_mask.png'));
 maskVS = VS.alpha;
 
 %% Clearing Variables
