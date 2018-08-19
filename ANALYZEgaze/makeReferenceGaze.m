@@ -14,7 +14,7 @@ function refGazeTable = makeReferenceGaze
 %     ADIfocus:     10
 %     HDGfocus:     40
 
-% Defining Each Gaze Pattern
+%% Defining Each Gaze Pattern
 
 % STABLE FLIGHT Scan Pattern --------------------------
 % Recurrent .T. Scan
@@ -154,31 +154,31 @@ for i=1:size(flightTasks,1)
     
     switch thisTask
         case 'SLF'
-            thisPattern = repmat(slfScan,round(thisFixationNum/length(slfScan)),1);
+            thisPattern = repmat(slfScan,thisFixationNum,1);
             patternsCell{i} = thisPattern;
             fixationSequence(fixationsSoFar:fixationsSoFar+size(thisPattern,1)-1) = thisPattern;
         case 'VERT'
-            thisPattern = repmat(vertScan,round(thisFixationNum/length(vertScan)),1);
+            thisPattern = repmat(vertScan,thisFixationNum,1);
             patternsCell{i} = thisPattern;
             fixationSequence(fixationsSoFar:fixationsSoFar+size(thisPattern,1)-1) = thisPattern;
         case 'TURN'
-            thisPattern = repmat(turnScan,round(thisFixationNum/length(turnScan)),1);
+            thisPattern = repmat(turnScan,thisFixationNum,1);
             patternsCell{i} = thisPattern;
             fixationSequence(fixationsSoFar:fixationsSoFar+size(thisPattern,1)-1) = thisPattern;
         case 'COMBO'
-            thisPattern = repmat(combScan,round(thisFixationNum/length(combScan)),1);
+            thisPattern = repmat(combScan,thisFixationNum,1);
             patternsCell{i} = thisPattern;            
             fixationSequence(fixationsSoFar:fixationsSoFar+size(thisPattern,1)-1) = thisPattern;
         case 'LO'
-            thisPattern = repmat(loScan,round(thisFixationNum/length(loScan)),1);
+            thisPattern = repmat(loScan,thisFixationNum,1);
             patternsCell{i} = thisPattern;
             fixationSequence(fixationsSoFar:fixationsSoFar+size(thisPattern,1)-1) = thisPattern;
         case 'RO'
-            thisPattern = repmat(roScan,round(thisFixationNum/length(roScan)),1);
+            thisPattern = repmat(roScan,thisFixationNum,1);
             patternsCell{i} = thisPattern;                 
             fixationSequence(fixationsSoFar:fixationsSoFar+size(thisPattern,1)-1) = thisPattern;
-        case 'LO+RO'    % ISSUE! Any special pattern??
-            thisPattern = repmat(roScan,round(thisFixationNum/length(roScan)),1); % ISSUE Check if makes sense
+        case 'LO+RO'
+            thisPattern = repmat(roScan,thisFixationNum,1); % ISSUE Check if makes sense
             patternsCell{i} = thisPattern;                 
             fixationSequence(fixationsSoFar:fixationsSoFar+size(thisPattern,1)-1) = thisPattern;            
     end
@@ -237,154 +237,10 @@ end
 
 refGazeTable = [refGazeTable refGazeX refGazeY];
 
-refTimestamps = 0:0.4:sum(timesArray);
-refTimestamps = (refTimestamps')*1000;  % in ms
-
-refGazeTable = [refTimestamps refGazeTable];
-
 refGazeTable = array2table(refGazeTable);
 
-refGazeTable.Properties.VariableNames{1} = 'Timestamps';
-refGazeTable.Properties.VariableNames{2} = 'GazeAOI';
-refGazeTable.Properties.VariableNames{3} = 'GazeX';
-refGazeTable.Properties.VariableNames{4} = 'GazeY';
-
-% plot(refTimestamps,refGazeX);
-% plot(refTimestamps,refGazeY);
-% scatter(refGazeX,refGazeY);
-
-%% Playing with Satistics
-
-smallX = refGazeX(1:10);
-smallY = refGazeY(1:10);
-smallTime = refTimestamps(1:10);
-
-[fittedX, ~] = createFitInterpolatingCubic(smallTime, smallX);
-[fittedY, ~] = createFitInterpolatingCubic(smallTime, smallY);
-
-instants = 100:1000:3500;
-
-figure;
-hold on;
-
-for i = 1:length(instants)
-    instant = instants(i);
-    mu = [fittedX(instant) fittedY(instant)];
-    Sigma = [2500 300; 300 1000]; % ISSUE - how to define variance and covariance??
-    x1 = 0:10:1216; x2 = 0:10:764;
-    [X1,X2] = meshgrid(x1,x2);
-    F = mvnpdf([X1(:) X2(:)],mu,Sigma);
-    F = reshape(F,length(x2),length(x1));
-    surf(x1,x2,F);
-    caxis('auto');
-    % set(h,'LineStyle','none');
-    % caxis([min(F(:))-.5*range(F(:)),max(F(:))]);
-    % axis([-3 3 -3 3 0 .4])
-    xlabel('x1'); ylabel('x2'); zlabel('Probability Density');
-end
-
-plot3(fittedX(1:3600),fittedY(1:3600),1e-04*ones(3600),'Color','red','LineWidth', 3);
-
-%% Distribution for Each Instrument
-
-% ADI
-ADIx = 626;
-ADIy = 269;
-
-mu = [ADIx ADIy];
-Sigma = [2500 300; 300 1000]; % ISSUE - how to define variance and covariance??
-x1 = 0:10:1216; x2 = 0:10:764;
-[X1,X2] = meshgrid(x1,x2);
-F_adi = mvnpdf([X1(:) X2(:)],mu,Sigma);
-F_adi = reshape(F_adi,length(x2),length(x1));
-
-%ALT
-ALTx = 911;
-ALTy = 284;
-
-mu = [ALTx ALTy];
-Sigma = [2500 300; 300 1000]; % ISSUE - how to define variance and covariance??
-x1 = 0:10:1216; x2 = 0:10:764;
-[X1,X2] = meshgrid(x1,x2);
-F_alt = mvnpdf([X1(:) X2(:)],mu,Sigma);
-F_alt = reshape(F_alt,length(x2),length(x1));
-
-%BA
-BAx = 614;
-BAy = 87;
-
-mu = [BAx BAy];
-Sigma = [2500 300; 300 1000]; % ISSUE - how to define variance and covariance??
-x1 = 0:10:1216; x2 = 0:10:764;
-[X1,X2] = meshgrid(x1,x2);
-F_ba = mvnpdf([X1(:) X2(:)],mu,Sigma);
-F_ba = reshape(F_ba,length(x2),length(x1));
-
-%HDG
-HDGx = 615;
-HDGy = 561;
-
-mu = [HDGx HDGy];
-Sigma = [2500 300; 300 1000]; % ISSUE - how to define variance and covariance??
-x1 = 0:10:1216; x2 = 0:10:764;
-[X1,X2] = meshgrid(x1,x2);
-F_hdg = mvnpdf([X1(:) X2(:)],mu,Sigma);
-F_hdg = reshape(F_hdg,length(x2),length(x1));
-
-%PWR
-PWRx = 1270;
-PWRy = 94;
-
-mu = [PWRx PWRy];
-Sigma = [2500 300; 300 1000]; % ISSUE - how to define variance and covariance??
-x1 = 0:10:1216; x2 = 0:10:764;
-[X1,X2] = meshgrid(x1,x2);
-F_pwr = mvnpdf([X1(:) X2(:)],mu,Sigma);
-F_pwr = reshape(F_pwr,length(x2),length(x1));
-
-%SPEED
-
-SPEEDx = 352;
-SPEEDy = 299;
-
-mu = [SPEEDx SPEEDy];
-Sigma = [2500 300; 300 1000]; % ISSUE - how to define variance and covariance??
-x1 = 0:10:1216; x2 = 0:10:764;
-[X1,X2] = meshgrid(x1,x2);
-F_speed = mvnpdf([X1(:) X2(:)],mu,Sigma);
-F_speed = reshape(F_speed,length(x2),length(x1));
-
-% VS
-
-VSx = 987;
-VSy = 283;
-
-mu = [VSx VSy];
-Sigma = [2500 300; 300 1000]; % ISSUE - how to define variance and covariance??
-x1 = 0:10:1216; x2 = 0:10:764;
-[X1,X2] = meshgrid(x1,x2);
-F_vs = mvnpdf([X1(:) X2(:)],mu,Sigma);
-F_vs = reshape(F_vs,length(x2),length(x1));
-
-%% Obtain resultant Cloud from Interaction of K-Pattern Prediction and Instrument Gradient Map
-
-Cloud = F*F_adi;
-% .... for the others
-
-
-    
-% p1 = -46.98;
-% p2 = -24.95;
-% p3 = 258.5;
-% p4 = 121.8;
-% p5 = -459.9;
-% p6 = -190.6;
-% p7 = 306.2;
-% p8 = 92.87;
-% p9 = -68.03;
-% p10 = 742;
-% 
-% f(x) = p1*x^9 + p2*x^8 + p3*x^7 + p4*x^6 + p5*x^5 + p6*x^4 + p7*x^3 + p8*x^2 + p9*x + p10;
-
+refGazeTable.Properties.VariableNames{1} = 'GazeAOI';
+refGazeTable.Properties.VariableNames{2} = 'GazeX';
+refGazeTable.Properties.VariableNames{3} = 'GazeY';
 
 end

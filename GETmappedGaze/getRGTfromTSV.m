@@ -3,9 +3,7 @@
 % Script based on the one from: https://www.mathworks.com/matlabcentral/answers/267176-read-and-seperate-csv-data#answer_209938
 % Improve Performance: remove "str2double"!!
 
-function rawGazeTable = getRGTfromTSV %(input_file)
-
-input_file = '/Users/RFRejtman/Documents/Education/KU LEUVEN Internship/Development/Data/Tobii TSV Files/CAE Data Export 31.tsv';
+function rawGazeTable = getRGTfromTSV(input_file)
 
 %% Detecting File Enconding
 

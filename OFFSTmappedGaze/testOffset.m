@@ -36,8 +36,8 @@ s1.MarkerFaceAlpha = 0.05;
 s3.MarkerFaceAlpha = 0.05;
 
 % New
-s2.MarkerFaceAlpha = 0.05;
-s4.MarkerFaceAlpha = 0.05;
+s2.MarkerFaceAlpha = 0.1;
+s4.MarkerFaceAlpha = 0.1;
 
 % Old
 s1.MarkerEdgeAlpha = 0.05;
