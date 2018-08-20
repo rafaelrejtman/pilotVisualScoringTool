@@ -6,6 +6,7 @@ myFolder = '/Users/RFRejtman/Documents/Education/KU LEUVEN Internship/Developmen
 participantTSVFiles = dir(fullfile(myFolder,'*.tsv'));
 
 totalPerc = zeros(10,1);
+K = 0;
 
 for i=1:size(participantTSVFiles,1)
     thisFile = participantTSVFiles(i).name;
@@ -14,9 +15,10 @@ for i=1:size(participantTSVFiles,1)
         [realPercDist,~] = modifiedMain(fileName);
         perc = realPercDist(:,3);
         totalPerc = totalPerc + perc;
+        K = K+1;
     end
 end
 
-avgGaze = totalPerc/size(participantTSVFiles,1);
+avgGaze = totalPerc/K;
 
 end

@@ -12,17 +12,17 @@ realGaze = realGaze.AOI_hit;
 
 % AOI Percentile
 
-%  Legend
-%     ADI:          1
-%     ALT:          2
-%     BA:           3
-%     HDG:          4
-%     PWR:          5
-%     SPEED:        6
-%     VS:           7
-
-%     ADIfocus:     10
-%     HDGfocus:     40
+%       Legend
+%   NON-AREA      0
+%   ADI:          1
+%   ALT:          2
+%   BA:           3
+%   HDG:          4
+%   PWR:          5
+%   SPEED:        6
+%   VS:           7
+%   ADIfocus:     10
+%   HDGfocus:     40
 
 realPercDist = tabulate(realGaze);
 
