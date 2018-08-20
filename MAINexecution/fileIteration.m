@@ -8,7 +8,7 @@ listOfBest = {'CAE Data Export 14.tsv';'CAE Data Export 21.tsv';'CAE Data Export
 avgGaze = makeAvgGaze(listOfBest);
 
 participantTSVFiles = dir(fullfile(myFolder,'*.tsv'));
-participantResults = cell(size(participantTSVFiles,1)+1,3);
+participantResults = cell(size(participantTSVFiles,1)+1,4);
 participantResults{1,1} = 'Participant';
 participantResults{1,2} = 'RecName';
 participantResults{1,3} = 'Score';
@@ -16,10 +16,11 @@ participantResults{1,3} = 'Score';
 for i=1:size(participantTSVFiles,1)
     thisFile = participantTSVFiles(i).name;
     fileName = fullfile(myFolder,thisFile);
-    [score,recName] = main(fileName,avgGaze);
+    [score,mode,recName] = main(fileName,avgGaze);
     participantResults{i+1,1} = thisFile;
     participantResults{i+1,2} = recName;
     participantResults{i+1,3} = score;
+    participantResults{i+1,4} = mode;
 end
 
 resultsT = cell2table(participantResults);
@@ -27,6 +28,7 @@ resultsT(1,:) = [];
 resultsT.Properties.VariableNames{1} = 'Participant';
 resultsT.Properties.VariableNames{2} = 'RecName';
 resultsT.Properties.VariableNames{3} = 'Score';
+resultsT.Properties.VariableNames{4} = 'CoordinateModes';
 
 scoreArray = cell2mat(resultsT.Score);
 resultsT.Score = scoreArray;
@@ -35,6 +37,9 @@ resultsT = sortrows(resultsT,'Score','ascend');
 labels = resultsT.RecName;
 scoreArray = resultsT.Score;
 plot(scoreArray);
+hold on;
+modeArray = resultsT.CoordinateModes;
+plot(modeArray);
 % xticklabels(labels);
 
 

@@ -1,7 +1,7 @@
 
 % Executes All Sub-mains from Individual Modules
 
-function [score,recName] = main(filename,avgGaze)
+function [score,mode,recName] = main(filename,avgGaze)
 
 global offsetMappedGazeTable recDur matchedGazeTable;
 
@@ -16,5 +16,7 @@ matchedGazeTable = mainMG2A(offsetMappedGazeTable);
 % idealGazeTable = makeReferenceGaze;
 
 score = newStatisticalAnalysis(matchedGazeTable,avgGaze);
+
+mode = coordinatesStatisticalAnalysis(offsetMappedGazeTable,0);
 
 end
